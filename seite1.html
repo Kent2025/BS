@@ -24,7 +24,23 @@
         </ul>
     </nav>
 
+<!-- Vor dem schließenden </body>-Tag -->
+
+
     <div class="poem-container" class="heart">
+
+        <div class="secret-message" onclick="showLoveLetter()">💌</div>
+
+        <div class="love-letter" id="loveLetter">
+            <h2>Mein Herz sagt...</h2>
+            <p>Meine Liebe des Lebens,<br>
+            jedes Wort in diesem Gedicht kommt direkt aus meinem Herzen.<br>
+            Du bist meine ewige Valentinsüberraschung 🥀❤️<br>
+            </p>
+            <button onclick="startRoseRain()">🌹 Klick für Rosenregen</button>
+        </div>
+
+
         <div class="poem-text">
             <!-- Dein Gedicht hier -->
     
@@ -85,17 +101,7 @@
         </div>
     </div>
 
-<!-- Vor dem schließenden </body>-Tag -->
-<div class="secret-message" onclick="showLoveLetter()">💌</div>
 
-<div class="love-letter" id="loveLetter">
-    <h2>Mein Herz sagt...</h2>
-    <p>Meine Liebe des Lebens,<br>
-    jedes Wort in diesem Gedicht kommt direkt aus meinem Herzen.<br>
-    Du bist meine ewige Valentinsüberraschung 🥀❤️<br>
-    </p>
-    <button onclick="startRoseRain()">🌹 Klick für Rosenregen</button>
-</div>
 
 <script>
 function showLoveLetter() {
