@@ -146,16 +146,7 @@ nav a {
 }
 
 
-body {
-    background: linear-gradient(to bottom right, #ffb3d9, #ff6680);
-    min-height: 100vh;
-    margin: 0;
-    padding: 80px 20px 20px;
-    font-family: 'Alex Brush', cursive;
-    color: #5e001f;
-    position: relative;
-    overflow-x: hidden;
-}
+
 
 .poem-container {
     max-width: 800px;
@@ -179,13 +170,13 @@ body::after {
     width: 100%;
     height: 100%;
     background-image: 
-        url('dein-bild1.jpg'),
-        url('dein-bild2.jpg'),
-        url('dein-bild3.jpg');
+        url('rose.webp'),
+        url('rose.webp'),
+        url('rose.webp');
     background-size: 200px, 250px, 180px;
     background-position: 10% 20%, 90% 70%, 50% 40%;
     background-repeat: no-repeat;
-    opacity: 0.15;
+    opacity: 0.45;
     z-index: 0;
     animation: float 20s infinite linear;
 }
