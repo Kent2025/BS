@@ -10,11 +10,52 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Caveat:wght@400..700&family=Merienda:wght@300..900&family=Sofia&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Caveat:wght@400..700&family=Merienda:wght@300..900&family=Sofia&display=swap" rel="stylesheet">
     <script src="script.js"></script>
-  <!--  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet"> -->
-
+    <!-- Zusätzliche Styles für die Box und die Herzen -->
+    <style>
+        /* Box unten rechts */
+        #myBox {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            width: 200px;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.3);
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+            z-index: 1000;
+        }
+        /* Versteckter Content in der Box */
+        #content {
+            display: none;
+            margin-top: 10px;
+        }
+        /* Herz-Elemente */
+        .heart {
+            position: fixed;
+            color: red;
+            font-size: 24px;
+            animation: fall linear;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        /* Animation für fallende Herzen */
+        @keyframes fall {
+            0% {
+                top: -10%;
+                opacity: 1;
+            }
+            100% {
+                top: 100%;
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 <body>
     <nav>
@@ -24,26 +65,10 @@
         </ul>
     </nav>
 
-<!-- Vor dem schließenden </body>-Tag -->
-
-
-    <div class="poem-container" class="heart">
-
-        <div class="secret-message" onclick="showLoveLetter()">💌</div>
-
-        <div class="love-letter" id="loveLetter">
-            <h2>Mein Herz sagt...</h2>
-            <p>Meine Liebe des Lebens,<br>
-            jedes Wort in diesem Gedicht kommt direkt aus meinem Herzen.<br>
-            Du bist meine ewige Valentinsüberraschung 🥀❤️<br>
-            </p>
-            <button onclick="startRoseRain()">🌹 Klick für Rosenregen</button>
-        </div>
-
-
+    <!-- Dein vorhandener Inhalt (das Gedicht) -->
+    <div class="poem-container">
         <div class="poem-text">
             <!-- Dein Gedicht hier -->
-    
             <span class="top">Ein Leben mit dir<br><br></span>
             Ich war nicht perfekt hab Fehler gemacht,
             Doch mit dir Baby hab ich alles bedacht.
@@ -95,33 +120,56 @@
             Bilnaz mein Herz schlägt nur für dich,
             Ich lass dich nicht los egal was zerbricht.<br><br>
 
-            <span class="down"> Bilnaz Bozkurt mein Herz ist bei dir,
-                Sag nur Bescheid ich bleib für immer hier</span>
-           
+            <span class="down">Bilnaz Bozkurt mein Herz ist bei dir,
+            Sag nur Bescheid ich bleib für immer hier</span>
         </div>
     </div>
 
+    <!-- Kleine Box unten rechts -->
+    <div id="myBox">
+        Baby Klick mich!
+        <div id="content">
+            <p>Seni Seviyorum❤️</p>
+            <button id="heartButton">Herzen regnen</button>
+        </div>
+    </div>
 
+    <script>
+        // Beim Klick auf die Box den versteckten Content ein-/ausblenden
+        document.getElementById('myBox').addEventListener('click', function(e) {
+            // Verhindern, dass ein Klick auf den Button den Toggle auslöst
+            if(e.target.id === 'heartButton') return;
+            var content = document.getElementById('content');
+            content.style.display = (content.style.display === 'block') ? 'none' : 'block';
+        });
 
-<script>
-function showLoveLetter() {
-    document.getElementById('loveLetter').style.display = 'block';
-}
+        // Beim Klick auf den Button Herzen regnen lassen
+        document.getElementById('heartButton').addEventListener('click', function(e) {
+            e.stopPropagation(); // Verhindert, dass der Klick die Box toggelt
+            rainHearts();
+        });
 
-function startRoseRain() {
-    for(let i = 0; i < 50; i++) {
-        const rose = document.createElement('div');
-        rose.style.position = 'fixed';
-        rose.style.left = Math.random() * 100 + '%';
-        rose.style.fontSize = (20 + Math.random() * 30) + 'px';
-        rose.style.animation = `fall ${3 + Math.random() * 3}s linear`;
-        rose.style.zIndex = 9999;
-        rose.innerHTML = Math.random() > 0.5 ? '🌹' : '🥀';
-        document.body.appendChild(rose);
-        setTimeout(() => rose.remove(), 3000);
-    }
-}
-</script>
+        // Funktion, um mehrere Herzen zu erzeugen
+        function rainHearts() {
+            for (let i = 0; i < 100; i++) {
+                createHeart();
+            }
+        }
 
+        // Erzeugt ein einzelnes Herz mit zufälliger horizontaler Position und Animationsdauer
+        function createHeart() {
+            let heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 2 + 2) + 's';
+            document.body.appendChild(heart);
+
+            // Entfernt das Herz, wenn die Animation endet
+            heart.addEventListener('animationend', function() {
+                heart.parentElement.removeChild(heart);
+            });
+        }
+    </script>
 </body>
 </html>
