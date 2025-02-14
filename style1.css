@@ -208,7 +208,7 @@ body::after {
 }
 
 .love-letter {
-    position: sticky;
+    position:sticky;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -221,3 +221,110 @@ body::after {
     box-shadow: 0 0 30px rgba(0,0,0,0.2);
     z-index: 1000;
 }
+
+
+
+.show-text {
+    display: block;
+    animation: fadeIn 1.5s;
+}
+
+.heart {
+    position: fixed;
+    font-size: 24px;
+    animation: fall 3s linear forwards;
+    pointer-events: none;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+
+
+
+          .valentine-box {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            cursor: pointer;
+            z-index: 1000;
+          }
+          
+          .valentine-box::before {
+            content: '🎁';
+            font-size: 40px;
+            animation: pulse 2s infinite;
+          }
+          
+          .valentine-message {
+            display: none;
+            position: absolute;
+            bottom: 60px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 102, 153, 0.3);
+            width: 200px;
+            text-align: center;
+          }
+          
+          .valentine-message p {
+            margin: 0 0 15px 0;
+            color: #cc0066;
+            font-family: 'Caveat', cursive;
+            font-size: 1.2em;
+          }
+          
+          .valentine-message button {
+            background: #ff0066;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: transform 0.3s;
+          }
+          
+          .valentine-message button:hover {
+            transform: scale(1.1);
+          }
+          
+          @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+          }
+          
+          .heart-rain {
+            position: fixed;
+            font-size: 24px;
+            animation: fall 3s linear forwards;
+            pointer-events: none;
+          }
+          
+          @keyframes fall {
+            0% {
+              transform: translateY(-100vh) rotate(0deg);
+              opacity: 1;
+            }
+            100% {
+              transform: translateY(100vh) rotate(360deg);
+              opacity: 0;
+            }
+          }
+          
